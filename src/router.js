@@ -21,10 +21,10 @@ function router(request, response) {
         // console.log("requested favicon.js")
         handlers.favHandler(request, response)
     }
-    // if (request.url === '/data/states.json') {
-    //     console.log("requested states.json")
-    //     handlers.dataHandler(request, response)
-    // }
+    if (request.url === '/dictresponse') {
+        // console.log("requested states.json")
+        handlers.dataHandler()
+    }
     // if (request.url === '/data/example.txt') {
     //     console.log("requested example.txt")
     //     handlers.txtHandler(request, response)
