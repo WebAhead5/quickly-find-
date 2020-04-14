@@ -1,6 +1,7 @@
 var fs = require('fs')
 var axios = require('axios')
-
+var querystring= require('querystring')
+var url = require('url');
 
 const indexHandler = function (request, response) {
     response.writeHead(200, { "Content-Type": "text/html" })
@@ -52,7 +53,6 @@ const logicHandler = function (request, response) {
             console.log(err)
             return
         }
-        console.log("file firing", file)
         response.end(file)
     })
 }
@@ -62,7 +62,10 @@ const logicHandler = function (request, response) {
 const dataHandler = (request,response) => {
     const app_id = "2aa061c4"
     const app_key = "1bbed253bde49ddc5b0a5ce1d570c77f"
-    const wordId = "dog";
+    const address = url.parse(request.url).query;
+    const queryaddress= querystring.parse(address);
+    const wordId = queryaddress.match;
+    console.log(wordId);
     const fields = "definitions";
     const strictMatch = "false";
 
@@ -79,11 +82,11 @@ const dataHandler = (request,response) => {
     };
 
     var link = 'https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/' + wordId + '?' + fields + '&strictMatch=' + strictMatch; 
-    console.log(link);
     axios.get(link, options)
     
         .then(function (res) {
-            response.end(JSON.stringify(res.data));
+            // response.end(JSON.stringify(res.data));
+            console.log(JSON.stringify(res.data))
         })
         .catch(function (err) {
             console.log(err);

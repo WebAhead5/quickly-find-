@@ -1,4 +1,6 @@
 var searchInput = document.getElementById('searchinput');
+var form = document.getElementById('form');
+
 var fullArray = []
 var xhr = new XMLHttpRequest();
 var url = '/dictfile';
@@ -6,7 +8,6 @@ xhr.open('GET', url);
 xhr.send();
 
 xhr.onreadystatechange = function onReadyStateChange() {
-  console.log("xhr fired")
   if (xhr.readyState === 4 && xhr.status === 200) {
     const response = xhr.responseText.split('\n');
     fullArray = response;
@@ -24,7 +25,6 @@ function clearSearchList() {
 
 function setDataList(intputtedtext) {
   const list = document.getElementById('suggestions')
-  console.log("setDataList firing")
   if (searchInput.value == '') {
     return
   }
@@ -39,23 +39,39 @@ function setDataList(intputtedtext) {
     const optionNode = document.createElement('option')
     optionNode.text = word;
     list.appendChild(optionNode)
+    optionNode.addEventListener('click', () => {
+
+      searchInput.value = optionNode.text;
+
+
+    })
   })
 }
-
 
 searchInput.addEventListener('input', () => {
   clearSearchList();
   setDataList(searchInput.value)
 })
 
-document.getElementById('suggestions').getElementsByTagName("option").addEventListener('click', () => {
 
 
-  console.log('clicked')
+function submitform() {
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET',`/api/words?match=${searchInput.value}`); 
+  xhr.send();
+
+  xhr.onreadystatechange = function onReadyStateChange() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      console.log(response);
+
+    }
+  };
 
 
 
-})
+}
+
 
 
 
