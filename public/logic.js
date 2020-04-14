@@ -7,12 +7,14 @@ var url = '/dictfile';
 xhr.open('GET', url);
 xhr.send();
 
+var fullArray = []
+
 xhr.onreadystatechange = function onReadyStateChange() {
   console.log("xhr fired")
   if (xhr.readyState === 4 && xhr.status === 200) {
     const response = xhr.responseText.split('\n');
     //callback(response);
-    console.log(response[4])
+    fullArray = response;
   }
 };
 
@@ -24,12 +26,20 @@ function clearSearchList(){
   });
 }
 
-function setDataList(optionValues){
+function setDataList(intputtedtext){
   const list = document.getElementById('suggestions') 
+  console.log("setDataList firing")
 
-  optionValues.forEach(word=>{
+  var regex = new RegExp(`^${intputtedtext}`, 'gi');
+  let matchedWords = fullArray.filter(word => {
+      return word.match(regex);
+  }).slice(0,10);
+
+  console.log(matchedWords)
+
+  matchedWords.forEach(word=>{
     const optionNode = document.createElement('option')
-    optionNode.value = word;
+    optionNode.text = word;
     list.appendChild(optionNode)
   })
 }
