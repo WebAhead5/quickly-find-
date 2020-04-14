@@ -48,12 +48,11 @@ const favHandler = function (request, response) {
 
 
 
-
-const dataHandler = () => {
+const dataHandler = (request,response) => {
     const app_id = "2aa061c4"
     const app_key = "1bbed253bde49ddc5b0a5ce1d570c77f"
-    const wordId = "ace";
-    const fields = "definition";
+    const wordId = "dog";
+    const fields = "definitions";
     const strictMatch = "false";
 
 
@@ -68,17 +67,16 @@ const dataHandler = () => {
         }
     };
 
-    var link = 'od-api.oxforddictionaries.com/api/v2/entries/en-gb/?' + fields + '&strictMatch=' + strictMatch;
-
+    var link = 'https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/' + wordId + '?' + fields + '&strictMatch=' + strictMatch; 
+    console.log(link);
     axios.get(link, options)
     
-        .then(function (response) {
-            console.log(response);
-            return response;
+        .then(function (res) {
+            data=res.data; 
+            response.end(JSON.stringify(data));
         })
-        .catch(function (error) {
-            console.log(error);
-            return error;
+        .catch(function (err) {
+            console.log(err);
         })
 
 
