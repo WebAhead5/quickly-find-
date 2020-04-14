@@ -1,13 +1,16 @@
 var searchInput = document.getElementById('searchinput');
-var wordsarray = [];
+var fullArray = []
 var xhr = new XMLHttpRequest();
 var url = '/dictfile';
 xhr.open('GET', url);
 xhr.send();
+
 xhr.onreadystatechange = function onReadyStateChange() {
   console.log("xhr fired")
   if (xhr.readyState === 4 && xhr.status === 200) {
-    wordsarray = xhr.responseText.split('\n');
+    const response = xhr.responseText.split('\n');
+    fullArray = response;
+
   }
 };
 
@@ -19,12 +22,22 @@ function clearSearchList() {
   });
 }
 
-function setDataList(optionValues) {
+function setDataList(intputtedtext) {
   const list = document.getElementById('suggestions')
+  console.log("setDataList firing")
+  if (searchInput.value == '') {
+    return
+  }
 
-  optionValues.forEach(word => {
+  var regex = new RegExp(`^${intputtedtext}`, 'gi');
+  let matchedWords = fullArray.filter(word => {
+    return word.match(regex);
+  }).slice(0, 10);
+
+
+  matchedWords.forEach(word => {
     const optionNode = document.createElement('option')
-    optionNode.value = word;
+    optionNode.text = word;
     list.appendChild(optionNode)
   })
 }
@@ -32,7 +45,16 @@ function setDataList(optionValues) {
 
 searchInput.addEventListener('input', () => {
   clearSearchList();
-  setDataList(wordsarray)
+  setDataList(searchInput.value)
+})
+
+document.getElementById('suggestions').getElementsByTagName("option").addEventListener('click', () => {
+
+
+  console.log('clicked')
+
+
+
 })
 
 
