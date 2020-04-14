@@ -1,22 +1,17 @@
-
-
 var searchInput = document.getElementById('searchinput');
-
+var wordsarray = [];
 var xhr = new XMLHttpRequest();
 var url = '/dictfile';
 xhr.open('GET', url);
 xhr.send();
-
 xhr.onreadystatechange = function onReadyStateChange() {
   console.log("xhr fired")
   if (xhr.readyState === 4 && xhr.status === 200) {
-    const response = xhr.responseText.split('\n');
-    //callback(response);
-    console.log(response[4])
+    wordsarray = xhr.responseText.split('\n');
   }
 };
 
-function clearSearchList(){
+function clearSearchList() {
   const list = document.getElementById('suggestions')
 
   Array.from(list.childNodes).forEach(node => {
@@ -24,10 +19,10 @@ function clearSearchList(){
   });
 }
 
-function setDataList(optionValues){
-  const list = document.getElementById('suggestions') 
+function setDataList(optionValues) {
+  const list = document.getElementById('suggestions')
 
-  optionValues.forEach(word=>{
+  optionValues.forEach(word => {
     const optionNode = document.createElement('option')
     optionNode.value = word;
     list.appendChild(optionNode)
@@ -35,9 +30,9 @@ function setDataList(optionValues){
 }
 
 
-searchInput.addEventListener('input', ()=>{
+searchInput.addEventListener('input', () => {
   clearSearchList();
-  setDataList(searchInput.value)
+  setDataList(wordsarray)
 })
 
 
