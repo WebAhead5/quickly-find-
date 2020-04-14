@@ -25,10 +25,15 @@ function router(request, response) {
         // console.log("requested states.json")
         handlers.dataHandler(request,response)
     }
-    // if (request.url === '/data/example.txt') {
-    //     console.log("requested example.txt")
-    //     handlers.txtHandler(request, response)
-    // }
+    if (request.url === '/logic.js') {
+        // console.log("requested states.json")
+        handlers.logicHandler(request,response)
+        //console.log(response)
+    }
+    if (request.url === '/dictfile') {
+        console.log("requested dictionary.txt")
+        handlers.txtHandler(request, response)
+    }
 
 }
 

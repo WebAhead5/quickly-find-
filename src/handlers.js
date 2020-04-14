@@ -45,6 +45,17 @@ const favHandler = function (request, response) {
         response.end(file)
     })
 }
+const logicHandler = function (request, response) {
+    response.writeHead(200, { "Content-Type": "text/javascript" })
+    fs.readFile(__dirname + '/../public/logic.js', function (err, file) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        console.log("file firing", file)
+        response.end(file)
+    })
+}
 
 
 
@@ -72,8 +83,7 @@ const dataHandler = (request,response) => {
     axios.get(link, options)
     
         .then(function (res) {
-            data=res.data; 
-            response.end(JSON.stringify(data));
+            response.end(JSON.stringify(res.data));
         })
         .catch(function (err) {
             console.log(err);
@@ -82,16 +92,16 @@ const dataHandler = (request,response) => {
 
 };
 
-// const txtHandler = function (request, response) {
-//     response.writeHead(200, { "Content-Type": "text/plain" })
-//     fs.readFile(__dirname + '/../data/example.txt', function (err, file) {
-//         if (err) {
-//             console.log(err)
-//             return
-//         }
-//         response.end(file)
-//     })
-// }
+const txtHandler = function (request, response) {
+    response.writeHead(200, { "Content-Type": "text/plain" })
+    fs.readFile(__dirname + '/../dictionary.txt', function (err, file) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        response.end(file)
+    })
+}
 
 module.exports = {
     indexHandler: indexHandler,
@@ -99,6 +109,7 @@ module.exports = {
     jsHandler: jsHandler,
     favHandler: favHandler,
     dataHandler: dataHandler,
-    // txtHandler: txtHandler,
+    logicHandler: logicHandler,
+    txtHandler: txtHandler,
 
 }
