@@ -23,7 +23,7 @@ function router(request, response) {
     }
     if (request.url === '/dictresponse') {
         // console.log("requested states.json")
-        handlers.dataHandler()
+        handlers.dataHandler(request,response)
     }
     // if (request.url === '/data/example.txt') {
     //     console.log("requested example.txt")

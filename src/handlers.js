@@ -49,7 +49,7 @@ const favHandler = function (request, response) {
 
 
 
-const dataHandler = () => {
+const dataHandler = (request,response) => {
     const app_id = "2aa061c4"
     const app_key = "1bbed253bde49ddc5b0a5ce1d570c77f"
     const wordId = "ace";
@@ -68,16 +68,19 @@ const dataHandler = () => {
         }
     };
 
-    var link = 'od-api.oxforddictionaries.com/api/v2/entries/en-gb/?' + fields + '&strictMatch=' + strictMatch;
+    var link = 'od-api.oxforddictionaries.com/api/v2/entries/en-gb/dog?' + fields + '&strictMatch=' + strictMatch;
 
     axios.get(link, options)
     
-        .then(function (response) {
-            console.log(response);
-            return response;
+        .then(function (res) {
+            console.log(res);
+            response.end("string")
+            return res;
+            
         })
         .catch(function (error) {
             console.log(error);
+            response.end("string")
             return error;
         })
 
