@@ -15,8 +15,8 @@ const giphyModule = (request, response) => {
     //console.log(res)
     //console.log(body)
     console.log('giphyModule is firing')
-    if(err){console.log("giphy error?: ", err)}
     if (err) {
+      if(err){console.log("giphy error?: ", err)}
       response.writeHead(400, { "Content-Type": "text/plain" })
       response.end("error for random bear")
       return
@@ -24,6 +24,8 @@ const giphyModule = (request, response) => {
     const { data } = JSON.parse(body)
     const imgHtml = `<img src=${data.image_original_url} />`
     response.writeHead(200, { 'content-type': 'text/html' })
+    console.log(imgHtml)
+    console.log(data)
     response.end(imgHtml)
   }
   )
