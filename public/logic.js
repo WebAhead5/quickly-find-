@@ -8,7 +8,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
 
 var fullArray = []
 var xhr = new XMLHttpRequest();
-var url = '/dictfile';
+var url = 'public/dictionary.txt';
 xhr.open('GET', url);
 xhr.send();
 
