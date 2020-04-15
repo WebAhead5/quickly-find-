@@ -2,6 +2,15 @@ var fs = require('fs')
 var axios = require('axios')
 var querystring = require('querystring')
 var url = require('url');
+const path = require('path');
+
+var extensionTypesObj = {
+    html: 'text/html',
+    css: 'text/css',
+    js: 'application/javascript',
+    ico: 'image/x-icon',
+    txt: 'text/plain'
+}
 
 const indexHandler = function (request, response) {
     response.writeHead(200, { "Content-Type": "text/html" })
@@ -14,62 +23,22 @@ const indexHandler = function (request, response) {
     })
 }
 
-const styleHandler = function (request, response) {
-    response.writeHead(200, { "Content-Type": "text/css" })
-    fs.readFile(__dirname + '/../public/style.css', function (err, file) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        response.end(file)
-    })
-}
+const publicHandler = (request, response) => {
+    const url = request.url; // /public/dictionary.txt
+    const extension = url.split('.')[1]; // txt
 
-const jsHandler = function (request, response) {
-    response.writeHead(200, { "Content-Type": "text/javascript" })
-    fs.readFile(__dirname + '/../public/index.js', function (err, file) {
-        if (err) {
-            console.log(err)
-            return
+    console.log(__dirname, "..", url)
+    const filePath = path.join(__dirname, "..", url);
+    fs.readFile(filePath, (error, file) => {
+        if (error) {
+            response.writeHead(500, { 'Content-Type': 'text/html' });
+            response.end("<h1>Sorry, encountered a problem</h1>");
+        } else {
+            response.writeHead(200, { 'Content-type': extensionTypesObj[extension] });
+            response.end(file);
         }
-        response.end(file)
     })
 }
-
-const favHandler = function (request, response) {
-    response.writeHead(200, { "Content-Type": "image/ico" })
-    fs.readFile(__dirname + '/../public/favicon.ico', function (err, file) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        response.end(file)
-    })
-}
-const logicHandler = function (request, response) {
-    response.writeHead(200, { "Content-Type": "text/javascript" })
-    fs.readFile(__dirname + '/../public/logic.js', function (err, file) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        // console.log("file firing", file)
-        response.end(file)
-    })
-}
-const giphyFEHandler = function (request, response) {
-    response.writeHead(200, { "Content-Type": "text/javascript" })
-    fs.readFile(__dirname + '/../public/giphy.js', function (err, file) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        console.log("giphy file firing", file)
-        response.end(file)
-    })
-}
-
-
 
 const dataHandler = (request, response) => {
     const app_id = "2aa061c4"
@@ -98,7 +67,7 @@ const dataHandler = (request, response) => {
 
         .then(function (res) {
             // console.log(JSON.stringify(res.data.results))
-            var definition= res.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
+            var definition = res.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
             console.log(definition);
             response.end(JSON.stringify(definition));
         })
@@ -108,25 +77,10 @@ const dataHandler = (request, response) => {
 
 
 };
-const txtHandler = function (request, response) {
-    response.writeHead(200, { "Content-Type": "text/plain" })
-    fs.readFile(__dirname + '/../dictionary.txt', function (err, file) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        response.end(file)
-    })
-}
+
 
 module.exports = {
     indexHandler: indexHandler,
-    styleHandler: styleHandler,
-    jsHandler: jsHandler,
-    favHandler: favHandler,
     dataHandler: dataHandler,
-    logicHandler: logicHandler,
-    txtHandler: txtHandler,
-    giphyFEHandler: giphyFEHandler,
-
+    publicHandler: publicHandler,
 }
