@@ -1,5 +1,5 @@
 var xhrgiphy = new XMLHttpRequest();
-var url = 'src/giphyhandler.js';
+var url = 'api/giphyhandler.js';
 xhrgiphy.open('GET', url);
 xhrgiphy.send();
 
