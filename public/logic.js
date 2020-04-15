@@ -1,6 +1,11 @@
 var searchInput = document.getElementById('searchinput');
 var form = document.getElementById('form');
 
+document.getElementById("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  submitform();
+});
+
 var fullArray = []
 var xhr = new XMLHttpRequest();
 var url = '/dictfile';
@@ -58,12 +63,16 @@ searchInput.addEventListener('input', () => {
 function submitform() {
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET',`/api/words?match=${searchInput.value}`); 
+  xhr.open('GET', `/api/words?match=${searchInput.value}`);
   xhr.send();
 
   xhr.onreadystatechange = function onReadyStateChange() {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      // console.log(response);
+      var response_defintion= xhr.responseText;
+      clearSearchList();
+      document.getElementById('suggestions').textContent=response_defintion;
+
+
 
     }
   };

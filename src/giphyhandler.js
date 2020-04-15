@@ -24,8 +24,6 @@ const giphyModule = (request, response) => {
     const { data } = JSON.parse(body)
     const imgHtml = `<img src=${data.image_original_url} />`
     response.writeHead(200, { 'content-type': 'text/html' })
-    console.log(imgHtml)
-    console.log(data)
     response.end(imgHtml)
   }
   )

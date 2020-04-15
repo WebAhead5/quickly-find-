@@ -11,12 +11,12 @@
       
     <div class="dictionary">
         <h1>Quickly Find</h1>
-        <form class="searchForm" onsubmit="submitform()">
-            <input type="search" class="txtBox" id='searchinput'>
+        <form class="searchForm" id="form">
+            <input type="search" class="txtBox" id='searchinput' autocomplete="off" >
             <input type="submit" class="submit-btn" value="submit" id='submit'>
         </form>
         <div class="suggestions" id='suggestions'>
-            <h2 class="search-word"></h2>
+            <h2 class="defintion"></h2>
             <p class="description"></p>
         </div>
     </div>

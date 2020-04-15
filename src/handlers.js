@@ -77,7 +77,7 @@ const dataHandler = (request, response) => {
     const address = url.parse(request.url).query;
     const queryaddress = querystring.parse(address);
     const wordId = queryaddress.match;
-    console.log(wordId);
+    console.log('Your searching word is', wordId);
     const fields = "definitions";
     const strictMatch = "false";
 
@@ -93,12 +93,14 @@ const dataHandler = (request, response) => {
         }
     };
 
-    var link = 'https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/'+'?' + wordId + '?' + fields + '&strictMatch=' + strictMatch;
-    axios.get(link,options)
-    
+    var link = 'https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/' + wordId + '?' + fields + '&strictMatch=' + strictMatch;
+    axios.get(link, options)
+
         .then(function (res) {
-            // response.end(JSON.stringify(res.data));
-            console.log(JSON.stringify(res.data))
+            // console.log(JSON.stringify(res.data.results))
+            var definition= res.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
+            console.log(definition);
+            response.end(JSON.stringify(definition));
         })
         .catch(function (err) {
             console.log(err);
@@ -106,7 +108,6 @@ const dataHandler = (request, response) => {
 
 
 };
-
 const txtHandler = function (request, response) {
     response.writeHead(200, { "Content-Type": "text/plain" })
     fs.readFile(__dirname + '/../dictionary.txt', function (err, file) {
