@@ -4,6 +4,7 @@ var form = document.getElementById('form');
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
   submitform();
+  giphyReturn();
 });
 
 var fullArray = []
@@ -72,25 +73,11 @@ function submitform() {
       clearSearchList();
       document.getElementById('suggestions').textContent = response_defintion;
 
-      var xhrgiphy = new XMLHttpRequest();
-      var url = '/giphyhandler.js';
-      xhrgiphy.open('GET', url);
-      xhrgiphy.send();
-
-      xhrgiphy.onreadystatechange = function onReadyStateChange() {
-        console.log("xhrgiphy fired")
-        if (xhrgiphy.readyState === 4 && xhrgiphy.status === 200) {
-          // console.log(xhrgiphy)
-          var image=document.getElementById('giphy');
-          image.src=xhrgiphy.responseText;
-
-        }
-      };
-
-
 
     }
   };
+
+
 
 
 
