@@ -8,7 +8,6 @@ const oxfordHandler = (request, response) => {
     const address = url.parse(request.url).query;
     const queryaddress = querystring.parse(address);
     const wordId = queryaddress.match;
-    console.log('Your searching word is', wordId);
     const fields = "definitions";
     const strictMatch = "false";
 

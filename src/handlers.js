@@ -1,9 +1,5 @@
 var fs = require('fs')
-var axios = require('axios')
-var querystring = require('querystring')
-var requester = require('request');
-var path = require('path');
-
+const path = require('path');
 
 var extensionTypesObj = {
     html: 'text/html',
@@ -41,11 +37,7 @@ const publicHandler = (request, response) => {
     })
 }
 
-
-
 module.exports = {
     indexHandler: indexHandler,
     publicHandler: publicHandler,
-
-
 }

@@ -26,9 +26,10 @@ const giphyModule = (request, response) => {
       response.end("error for random bear")
       return
     }
-    let parsedstring = JSON.parse(res.body)
-    console.log(parsedstring.data.images.original.url)
-    response.end(parsedstring.data.images.original.url)
+    response.writeHead(200, { "Content-Type": "application/json" })
+    // let parsedstring = JSON.parse(res.body)
+    response.end(res.body);
+
   }
   )
 }
