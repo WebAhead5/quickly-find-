@@ -53,6 +53,18 @@ const logicHandler = function (request, response) {
             console.log(err)
             return
         }
+        // console.log("file firing", file)
+        response.end(file)
+    })
+}
+const giphyFEHandler = function (request, response) {
+    response.writeHead(200, { "Content-Type": "text/javascript" })
+    fs.readFile(__dirname + '/../public/giphy.js', function (err, file) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        console.log("giphy file firing", file)
         response.end(file)
     })
 }
@@ -114,5 +126,6 @@ module.exports = {
     dataHandler: dataHandler,
     logicHandler: logicHandler,
     txtHandler: txtHandler,
+    giphyFEHandler: giphyFEHandler,
 
 }

@@ -1,4 +1,5 @@
 var handlers = require('./handlers.js')
+var giphyHandler = require('./giphyhandler')
 
 function router(request, response) {
     // console.log(request.url, request.method)
@@ -13,9 +14,13 @@ function router(request, response) {
         // console.log("requested index.js")
         handlers.jsHandler(request, response)
     }
-    if (request.url === '/favicon.ico') {
-        // console.log("requested favicon.js")
-        handlers.favHandler(request, response)
+    if (request.url === '/giphyhandler.js') {
+        // console.log("requested index.js")
+        giphyHandler(request, response)
+    }
+    if (request.url === '/giphy.js') {
+        // console.log("requested index.js")
+        handlers.giphyFEHandler(request, response)
     }
     if (request.url.includes ('/api/words') ) {
         handlers.dataHandler(request,response)
