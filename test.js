@@ -8,7 +8,7 @@ test("Initialise", t => {
     t.end();
 })
 
-test("Home route returns a status code of 200", t => {
+test("Check HOME Router", t => {
 
     supertest(router)
     .get("/")
@@ -20,3 +20,49 @@ test("Home route returns a status code of 200", t => {
        t.end(); 
     });
 });
+
+
+test("Check OXFORD API Router", t => {
+
+    supertest(router)
+    .get("/api/words")
+    .expect(200)
+    .expect("content-type", "application/json")
+    .end((err,res) => {
+       t.error(err)
+       t.deepEqual(typeof res.body, "string");
+       t.end(); 
+    });
+});
+
+
+test("Check GIPHY API Router", t => {
+
+    supertest(router)
+    .get("/api/giphyhandler")
+    .expect(200)
+    .expect("content-type", "application/json")
+    .end((err,res) => {
+       t.error(err)
+       t.deepEqual(typeof res.body, "object");
+       t.end(); 
+    });
+});
+
+
+test("Check PUBLIC Router", t => {
+
+    supertest(router)
+    .get("/dolpin")
+    .expect(500)
+    .expect("content-type", "text/html")
+    .end((err,res) => {
+       t.error(err)
+       t.deepEqual(res.text,"<h1>Sorry, encountered a problem</h1>");
+       t.end(); 
+    });
+});
+
+
+
+
