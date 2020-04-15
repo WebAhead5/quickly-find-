@@ -26,6 +26,10 @@ function router(request, response) {
         handlers.dataHandler(request,response)
         
     }
+    if (request.url.includes ('/test') ) {
+        handlers.dataHandler(request,response)
+        
+    }
     if (request.url === '/logic.js') {
         // console.log("requested states.json")
         handlers.logicHandler(request,response)

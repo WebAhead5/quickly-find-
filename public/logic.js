@@ -1,6 +1,11 @@
 var searchInput = document.getElementById('searchinput');
 var form = document.getElementById('form');
 
+document.getElementById("form").addEventListener("submit", function(event){
+  event.preventDefault();
+  submitform();
+});
+
 var fullArray = []
 var xhr = new XMLHttpRequest();
 var url = '/dictfile';
@@ -63,7 +68,7 @@ function submitform() {
 
   xhr.onreadystatechange = function onReadyStateChange() {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log(response);
+      console.log(xhr.responseText);
 
     }
   };

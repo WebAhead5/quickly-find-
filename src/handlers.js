@@ -97,8 +97,11 @@ const dataHandler = (request,response) => {
     axios.get(link, options)
     
         .then(function (res) {
-            // response.end(JSON.stringify(res.data));
-            console.log(JSON.stringify(res.data))
+            // console.log(JSON.stringify(res.data.results))
+            console.log(res.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions)
+            response.end(JSON.stringify(res.data));
+            //console.log(JSON.stringify(res.data))
+            //response.end(res.data)
         })
         .catch(function (err) {
             console.log(err);
