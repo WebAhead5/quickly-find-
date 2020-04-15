@@ -69,15 +69,15 @@ function submitform() {
 
   xhr.onreadystatechange = function onReadyStateChange() {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      var response_defintion= xhr.responseText;
+      var response_defintion = xhr.responseText;
       clearSearchList();
-      document.getElementById('suggestions').textContent=response_defintion;
+      document.getElementById('suggestions').textContent = response_defintion;
 
-      const giphygif = document.getElementById('giphygif')
-      // giphygif.src = 
 
     }
   };
+
+
 
 
 
