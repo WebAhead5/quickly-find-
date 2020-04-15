@@ -68,9 +68,24 @@ function submitform() {
 
   xhr.onreadystatechange = function onReadyStateChange() {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      var response_defintion= xhr.responseText;
+      var response_defintion = xhr.responseText;
       clearSearchList();
-      document.getElementById('suggestions').textContent=response_defintion;
+      document.getElementById('suggestions').textContent = response_defintion;
+
+      var xhrgiphy = new XMLHttpRequest();
+      var url = '/giphyhandler.js';
+      xhrgiphy.open('GET', url);
+      xhrgiphy.send();
+
+      xhrgiphy.onreadystatechange = function onReadyStateChange() {
+        console.log("xhrgiphy fired")
+        if (xhrgiphy.readyState === 4 && xhrgiphy.status === 200) {
+          // console.log(xhrgiphy)
+          var image=document.getElementById('giphy');
+          image.src=xhrgiphy.responseText;
+
+        }
+      };
 
 
 

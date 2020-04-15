@@ -2,6 +2,7 @@ var fs = require('fs')
 var axios = require('axios')
 var querystring = require('querystring')
 var url = require('url');
+var requester = require('request');
 
 const indexHandler = function (request, response) {
     response.writeHead(200, { "Content-Type": "text/html" })
@@ -57,17 +58,17 @@ const logicHandler = function (request, response) {
         response.end(file)
     })
 }
-const giphyFEHandler = function (request, response) {
-    response.writeHead(200, { "Content-Type": "text/javascript" })
-    fs.readFile(__dirname + '/../public/giphy.js', function (err, file) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        console.log("giphy file firing", file)
-        response.end(file)
-    })
-}
+// const giphyFEHandler = function (request, response) {
+//     response.writeHead(200, { "Content-Type": "text/javascript" })
+//     fs.readFile(__dirname + '/../public/giphy.js', function (err, file) {
+//         if (err) {
+//             console.log(err)
+//             return
+//         }
+//         console.log("giphy file firing", file)
+//         response.end(file)
+//     })
+// }
 
 
 
@@ -98,7 +99,7 @@ const dataHandler = (request, response) => {
 
         .then(function (res) {
             // console.log(JSON.stringify(res.data.results))
-            var definition= res.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
+            var definition = res.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
             console.log(definition);
             response.end(JSON.stringify(definition));
         })
@@ -119,6 +120,36 @@ const txtHandler = function (request, response) {
     })
 }
 
+
+var giphyAPI = "api_key=WwO6TOqO5F501pUYn8AP1RWD7I1Cr0uM";
+var giphyURL = "http://api.giphy.com/v1/gifs/random?"
+var tags = "&tag=monkey&rating=R"
+
+var pathtoGiphy = giphyURL.concat(giphyAPI, tags)
+
+
+const giphyFEHandler = (request, response) => {
+
+    requester.get(pathtoGiphy, (err, res, body) => {
+        //console.log(res)
+        //console.log(body)
+        console.log('giphyModule is firing')
+        if (err) {
+            if (err) { console.log("giphy error?: ", err) }
+            response.writeHead(400, { "Content-Type": "text/plain" })
+            response.end("error for random bear")
+            return
+        }
+        const { data } = JSON.parse(body)
+        const imgHtml = data.image_original_url
+        response.writeHead(200, { 'content-type': 'text/html' })
+        console.log(imgHtml);
+        response.end(imgHtml);
+
+    }
+    )
+}
+
 module.exports = {
     indexHandler: indexHandler,
     styleHandler: styleHandler,
@@ -127,6 +158,6 @@ module.exports = {
     dataHandler: dataHandler,
     logicHandler: logicHandler,
     txtHandler: txtHandler,
-    giphyFEHandler: giphyFEHandler,
+    giphyHandler: giphyHandler,
 
 }

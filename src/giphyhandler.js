@@ -22,9 +22,11 @@ const giphyModule = (request, response) => {
       return
     }
     const { data } = JSON.parse(body)
-    const imgHtml = `<img src=${data.image_original_url} />`
+    const imgHtml = data.image_original_url
     response.writeHead(200, { 'content-type': 'text/html' })
-    response.end(imgHtml)
+    console.log(imgHtml);
+    response.end(imgHtml);
+
   }
   )
 }
