@@ -63,7 +63,7 @@ function submitform() {
 
   xhr.onreadystatechange = function onReadyStateChange() {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log(response);
+      // console.log(response);
 
     }
   };
