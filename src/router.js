@@ -2,7 +2,7 @@ var handlers = require('./handlers.js')
 var giphyHandler = require('./giphyhandler')
 
 function router(request, response) {
-    console.log(request.url, request.method)
+    // console.log(request.url, request.method)
     if (request.url === '/') {
         handlers.indexHandler(request, response)
     }
@@ -22,13 +22,9 @@ function router(request, response) {
         // console.log("requested index.js")
         handlers.giphyFEHandler(request, response)
     }
-    if (request.url === '/favicon.ico') {
-        // console.log("requested favicon.js")
-        handlers.favHandler(request, response)
-    }
-    if (request.url === '/dictresponse') {
-        // console.log("requested states.json")
+    if (request.url.includes ('/api/words') ) {
         handlers.dataHandler(request,response)
+        
     }
     if (request.url === '/logic.js') {
         // console.log("requested states.json")
