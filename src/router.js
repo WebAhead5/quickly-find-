@@ -9,7 +9,8 @@ function router(request, response) {
     else if (request.url.includes('/api/words')) {
         oxfordHandler.oxfordHandler(request, response)
     }
-    else if (request.url.includes('api/giphyhandler.js')) {
+    else if (request.url.includes('api/giphyhandler')) {
+        console.log('getting through giphy route')
         giphyHandler.giphyModule(request, response)
     }
 

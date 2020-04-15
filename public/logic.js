@@ -4,6 +4,7 @@ var form = document.getElementById('form');
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
   submitform();
+  giphyReturn();
 });
 
 var fullArray = []
@@ -72,7 +73,8 @@ function submitform() {
       clearSearchList();
       document.getElementById('suggestions').textContent=response_defintion;
 
-
+      const giphygif = document.getElementById('giphygif')
+      // giphygif.src = 
 
     }
   };
