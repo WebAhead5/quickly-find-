@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/public/style.css">
+    <script src="http://code.jquery.com/jquery-git2.js"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=zyntR5qB"></script>
+</head>
+
+<body>
+
+    <div class="dictionary">
+        <h1>Monkey Define</h1>
+        <img src="/public/img/boredmonkey.gif" alt="" id="giphygif">
+        <div id="monkeystatus">Monkey waiting</div>
+        <form class="searchForm" id="form">
+            <input type="search" class="txtBox" id='searchinput' autocomplete="off">
+            <input type="submit" class="submit-btn" value="submit" id='submit'>
+        </form>
+        <div class="suggestions" id='suggestions'>
+        </div>
+        <button  onclick="responsiveVoice.speak($('#suggestions').text());" type="button" >Play</button>
+    </div>
+
+</body>
+
+<script type="text/javascript" src="public/giphy.js"></script>
+<script type="text/javascript" src="public/logic.js"></script>
+
+</html>
