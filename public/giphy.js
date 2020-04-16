@@ -29,7 +29,7 @@ function giphyReturn() {
 
 searchInput.addEventListener('input', () => {
   if (searchInput.value == '') {
-    giphygif.src = '/public/img/boredmonkey.gif'
+    boredmonkey();
   }
   else {
     monkeystatus.textContent = 'Monkey Typing!'
@@ -40,4 +40,10 @@ searchInput.addEventListener('input', () => {
 function waitingmonkey(){
   monkeystatus.textContent = 'Monkey Looking for a gif!'
   giphygif.src = '/public/img/dancingmonkey.gif'
+}
+
+
+function boredmonkey(){
+  monkeystatus.textContent = 'Monkey wating !'
+  giphygif.src = '/public/img/boredmonkey.gif'
 }
