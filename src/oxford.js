@@ -8,7 +8,6 @@ const oxfordHandler = (request, response) => {
     const address = url.parse(request.url).query;
     const queryaddress = querystring.parse(address);
     const wordId = queryaddress.match;
-    console.log('Your searching word is', wordId);
     const fields = "definitions";
     const strictMatch = "false";
 
@@ -30,7 +29,6 @@ const oxfordHandler = (request, response) => {
         .then(function (res) {
             // console.log(JSON.stringify(res.data.results))
             var definition = res.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
-            console.log(definition);
             response.end(JSON.stringify(definition));
         })
         .catch(function (err) {
