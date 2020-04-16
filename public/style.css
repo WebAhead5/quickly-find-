@@ -87,7 +87,7 @@ body {
   }
 
   #giphygif {
-    margin: 50px;
+    margin: 10px;
     width: 60%;
     height: 40vh;
   }
@@ -103,4 +103,9 @@ body {
   #suggestions{
     padding-top: 40px;
     padding: 40px;
+  }
+
+
+  #monkeystatus {
+    margin-bottom: 20px;
   }

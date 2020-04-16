@@ -1,6 +1,7 @@
 var searchInput = document.getElementById('searchinput');
 var form = document.getElementById('form');
 
+
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
   waitingmonkey();
@@ -79,12 +80,7 @@ function submitform() {
     }
   };
 
-
-
-
-
 }
-
 
 
 

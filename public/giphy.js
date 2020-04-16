@@ -1,6 +1,6 @@
 var searchInput = document.getElementById('searchinput');
 var giphygif = document.getElementById('giphygif')
-
+var monkeystatus = document.getElementById('monkeystatus')
 
 function giphyReturn() {
   var searchInput = document.getElementById('searchinput')
@@ -11,13 +11,18 @@ function giphyReturn() {
       return response.json();
     })
     .then(function (data) {
+      monkeystatus.textContent = 'gif Found!'
       var datafinal = data.data.images.downsized.url;
       document.getElementById('giphygif').src = datafinal;
 
     })
     .catch(function (error) {
-      giphygif.src = "/public/img/unhappymonkey.gif"
-      console.log(error);
+      setTimeout(()=>{
+        monkeystatus.textContent = 'Monkey could not find any gifs for this word.'
+        giphygif.src = "/public/img/unhappymonkey.gif"
+        console.log(error);
+      },3500)
+
     })
 }
 
@@ -27,10 +32,12 @@ searchInput.addEventListener('input', () => {
     giphygif.src = '/public/img/boredmonkey.gif'
   }
   else {
+    monkeystatus.textContent = 'Monkey Typing!'
     giphygif.src = '/public/img/typingmonkey.gif';
   }
 })
 
 function waitingmonkey(){
+  monkeystatus.textContent = 'Monkey Looking for a gif!'
   giphygif.src = '/public/img/dancingmonkey.gif'
 }
