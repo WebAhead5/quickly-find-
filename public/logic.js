@@ -1,15 +1,15 @@
 var searchInput = document.getElementById('searchinput');
 var form = document.getElementById('form');
-
-
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
-
-  
   if (searchInput.value.length > 0) {
     waitingmonkey();
     submitform();
     giphyReturn();
+  }
+  if (searchInput.value.length === 0 ) {
+    boredmonkey();
+
   }
   else return
 

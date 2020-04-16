@@ -27,9 +27,9 @@ const giphyModule = (request, response) => {
     }
     response.writeHead(200, { "Content-Type": "application/json" })
     let parsedstring = JSON.parse(res.body)
-    console.log("giphy response.body:",parsedstring.data.length)
 
-    if(parsedstring.data.length ===0 ){
+
+    if (parsedstring.data.length === 0) {
       response.end("there is no giphy available")
     }
 
