@@ -4,9 +4,13 @@ var form = document.getElementById('form');
 
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
-  waitingmonkey();
-  submitform();
-  giphyReturn();
+  console.log("search input innertext: ", searchInput.value)
+  if (searchInput.value.length > 0) {
+    waitingmonkey();
+    submitform();
+    giphyReturn();
+  }
+  else return
 });
 
 var fullArray = []
