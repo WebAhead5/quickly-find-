@@ -81,7 +81,7 @@ function submitform() {
       var response_defintion = xhr.responseText;
       clearSearchList();
       document.getElementById('suggestions').textContent = response_defintion;
-      responsiveVoice.speak(response_defintion);
+      
 
     }
   };
