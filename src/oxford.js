@@ -6,7 +6,9 @@ const oxfordHandler = (request, response) => {
     const app_id = "2aa061c4"
     const app_key = "1bbed253bde49ddc5b0a5ce1d570c77f"
     const address = url.parse(request.url).query;
+    console.log(address);
     const queryaddress = querystring.parse(address);
+    console.log(queryaddress);
     const wordId = queryaddress.match;
     const fields = "definitions";
     const strictMatch = "false";
