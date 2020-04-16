@@ -29,6 +29,7 @@ const oxfordHandler = (request, response) => {
         .then(function (res) {
             // console.log(JSON.stringify(res.data.results))
             var definition = res.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
+            response.writeHead(200, { "Content-Type": "application/json" })
             response.end(JSON.stringify(definition));
         })
         .catch(function (err) {

@@ -24,7 +24,7 @@ const publicHandler = (request, response) => {
     const url = request.url; // /public/dictionary.txt
     const extension = url.split('.')[1]; // txt
 
-    console.log(__dirname, "..", url)
+    // console.log(__dirname, "..", url)
     const filePath = path.join(__dirname, "..", url);
     fs.readFile(filePath, (error, file) => {
         if (error) {

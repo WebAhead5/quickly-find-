@@ -11,7 +11,7 @@ const giphyModule = (request, response) => {
   var address = url.parse(request.url).query;
   var queryaddress = querystring.parse(address);
   var wordId = queryaddress.match;
-  console.log('wordID: ', wordId)
+  // console.log('wordID: ', wordId)
 
   var tags = `&tag=${wordId}&rating=R`
 
@@ -19,7 +19,7 @@ const giphyModule = (request, response) => {
 
   requester.get(pathtoGiphy, (err, res, body) => {
 
-    console.log(pathtoGiphy)
+    // console.log(pathtoGiphy)
     if (err) {
       if (err) { console.log("giphy error?: ", err) }
       response.writeHead(400, { "Content-Type": "text/plain" })
@@ -29,6 +29,7 @@ const giphyModule = (request, response) => {
     response.writeHead(200, { "Content-Type": "application/json" })
     // let parsedstring = JSON.parse(res.body)
     response.end(res.body);
+
 
   }
   )
