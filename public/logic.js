@@ -7,6 +7,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
   waitingmonkey();
   submitform();
   giphyReturn();
+
 });
 
 var fullArray = []
@@ -75,14 +76,9 @@ function submitform() {
       var response_defintion = xhr.responseText;
       clearSearchList();
       document.getElementById('suggestions').textContent = response_defintion;
-
+      responsiveVoice.speak(response_defintion);
 
     }
   };
 
 }
-
-
-
-
-

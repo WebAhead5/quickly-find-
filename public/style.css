@@ -58,6 +58,21 @@ body {
     z-index: 1;
     margin-right:5px;
   }
+  button {
+    border-radius: 15px;
+    appearance: none;
+    -webkit-appearance:none;
+    padding: 15px;
+    right: 0;
+    top: 0;
+    border: none; 
+    background: goldenrod;
+    font-size: 20px;
+    font-style: oblique;
+    margin-right:5px;
+  }
+
+
 
   form {
     position: relative;
