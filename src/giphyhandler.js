@@ -11,7 +11,6 @@ const giphyModule = (request, response) => {
   var address = url.parse(request.url).query;
   var queryaddress = querystring.parse(address);
   var wordId = queryaddress.match;
-  // console.log('wordID: ', wordId)
 
   var tags = `&tag=${wordId}&rating=R`
 
@@ -19,17 +18,22 @@ const giphyModule = (request, response) => {
 
   requester.get(pathtoGiphy, (err, res, body) => {
 
-    // console.log(pathtoGiphy)
     if (err) {
       if (err) { console.log("giphy error?: ", err) }
+
       response.writeHead(400, { "Content-Type": "text/plain" })
       response.end("error for random bear")
       return
     }
     response.writeHead(200, { "Content-Type": "application/json" })
-    // let parsedstring = JSON.parse(res.body)
-    response.end(res.body);
+    let parsedstring = JSON.parse(res.body)
+    console.log("giphy response.body:",parsedstring.data.length)
 
+    if(parsedstring.data.length ===0 ){
+      response.end("there is no giphy available")
+    }
+
+    response.end(res.body);
 
   }
   )

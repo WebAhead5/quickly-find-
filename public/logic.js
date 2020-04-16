@@ -1,8 +1,10 @@
 var searchInput = document.getElementById('searchinput');
 var form = document.getElementById('form');
 
+
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
+  waitingmonkey();
   submitform();
   giphyReturn();
 });
@@ -62,6 +64,7 @@ searchInput.addEventListener('input', () => {
 
 
 function submitform() {
+  document.getElementById('suggestions').textContent = 'loading definition';
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', `/api/words?match=${searchInput.value}`);
@@ -77,12 +80,7 @@ function submitform() {
     }
   };
 
-
-
-
-
 }
-
 
 
 

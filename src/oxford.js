@@ -29,13 +29,13 @@ const oxfordHandler = (request, response) => {
     axios.get(link, options)
 
         .then(function (res) {
-            // console.log(JSON.stringify(res.data.results))
             var definition = res.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
             response.writeHead(200, { "Content-Type": "application/json" })
             response.end(JSON.stringify(definition));
         })
         .catch(function (err) {
-            console.log(err);
+            console.log("oxford handler error has occurred ");
+            response.end("No definition available for this word.")
         })
 
 
