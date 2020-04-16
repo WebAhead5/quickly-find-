@@ -94,7 +94,6 @@ body {
 
   @media only screen and (max-width: 600px){
     #giphygif {
-      right: 50px;
       position: relative;
       max-width: 100%;
     }
